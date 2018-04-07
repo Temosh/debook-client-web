@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -17,7 +17,8 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
+    HttpClientXsrfModule,
     routing
   ],
   declarations: [

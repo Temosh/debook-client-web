@@ -16,11 +16,18 @@
       <div *ngIf="f.submitted && !lastName.valid" class="invalid-feedback">Last Name is required</div>
     </div>
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" name="username"
-             [ngClass]="{ 'is-invalid': f.submitted && !username.valid }"
-             [(ngModel)]="model.username" #username="ngModel" required />
-      <div *ngIf="f.submitted && !username.valid" class="invalid-feedback">Username is required</div>
+      <label for="login">Login</label>
+      <input type="text" class="form-control" name="login"
+             [ngClass]="{ 'is-invalid': f.submitted && !login.valid }"
+             [(ngModel)]="model.login" #login="ngModel" required />
+      <div *ngIf="f.submitted && !login.valid" class="invalid-feedback">Login is required</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email"
+             [ngClass]="{ 'is-invalid': f.submitted && !email.valid }"
+             [(ngModel)]="model.email" #email="ngModel" required />
+      <div *ngIf="f.submitted && !email.valid" class="invalid-feedback">Email is required</div>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
