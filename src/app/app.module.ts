@@ -9,7 +9,7 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService } from './_services/index';
-import { HomeComponent } from './home/home.component';
+import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -24,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     AppComponent,
     AlertComponent,
-    HomeComponent,
+    MainComponent,
     LoginComponent,
     RegisterComponent
   ],

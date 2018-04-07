@@ -3,8 +3,8 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import { AlertService } from './alert.service';
 import 'rxjs/operator/map';
 import {mergeMap} from 'rxjs/internal/operators';
-import {User} from '../_models';
 import {Observable} from 'rxjs/Rx';
+import {User} from '../_models';
 
 @Injectable()
 export class AuthenticationService {
@@ -19,7 +19,7 @@ export class AuthenticationService {
         mergeMap(value =>
           // this.http.post('/api/login', JSON.stringify({ username: username, password: password }),
           this.http.post('/api/login', null, {params: {username: username, password: password}, observe: 'response'})
-            .map((response: HttpResponse) => {
+            .map((response: HttpResponse<Object>) => {
               if (response.ok) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', username);
