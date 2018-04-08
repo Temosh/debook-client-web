@@ -1,4 +1,4 @@
 export * from './alert.service';
 export * from './authentication.service';
 export * from './user.service';
-export * from 'app/_services/local_debt.service';
+export * from 'app/_services/debt.service';

@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import {AlertService, AuthenticationService, LocalDebtService, UserService} from './_services/index';
+import {AlertService, AuthenticationService, DebtService, UserService} from './_services/index';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -33,7 +33,7 @@ import { RegisterComponent } from './register/register.component';
     AlertService,
     AuthenticationService,
     UserService,
-    LocalDebtService
+    DebtService
   ],
   bootstrap: [AppComponent]
 })

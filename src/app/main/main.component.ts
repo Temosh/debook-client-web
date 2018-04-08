@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {LocalDebtService, UserService} from '../_services';
-import {LocalDebt} from '../_models/local_debt';
+import {DebtService, UserService} from '../_services';
+import {Debt} from '../_models/debt';
 
 
 @Component({
@@ -10,11 +10,11 @@ import {LocalDebt} from '../_models/local_debt';
 
 export class MainComponent implements OnInit {
   currentUser: string;
-  localDebts: LocalDebt[] = [];
+  debts: Debt[] = [];
 
   constructor(
     private userService: UserService,
-    private localDebtService: LocalDebtService
+    private localDebtService: DebtService
   ) {
     this.currentUser = localStorage.getItem('currentUser');
   }
@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   private loadAllLocalDebts() {
     this.localDebtService.getAll()
       .subscribe(
-        (localDebts: LocalDebt[]) => this.localDebts = localDebts
+        (localDebts: Debt[]) => this.debts = localDebts
       );
   }
 }
