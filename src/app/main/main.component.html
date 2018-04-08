@@ -1,5 +1,22 @@
 <div class="col-md-6 col-md-offset-3">
   <h1>Hi {{currentUser}}!</h1>
-  <p>You're logged in with Angular 2!!</p>
+
+  <h3>All debts:</h3>
+  <div id="accordion">
+    <div class="card" *ngFor="let localDebt of localDebts; let i = index">
+      <div class="card-header" id="heading_{{i}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse_' + i" aria-expanded="true" [attr.aria-controls]="'collapse_' + i">
+            {{localDebt.localUser.name}} {{localDebt.localUser.surname}}
+          </button>
+        </h5>
+      </div>
+      <div id="collapse_{{i}}" class="collapse" [attr.aria-labelledby]="'heading_' + i" data-parent="#accordion">
+        <div class="card-body">
+          {{localDebt.value}}{{localDebt.currency.sign}}
+        </div>
+      </div>
+    </div>
+  </div>
   <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
