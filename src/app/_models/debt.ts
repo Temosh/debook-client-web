@@ -1,10 +1,4 @@
 export class Debt {
-  user: {
-    name: string,
-    surname: string,
-    email: string
-  };
-
   person: {
     name: string,
     surname: string
