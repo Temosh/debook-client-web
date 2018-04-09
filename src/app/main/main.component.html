@@ -1,6 +1,12 @@
 <div class="col-md-6 col-md-offset-3">
   <h1>Hi {{currentUser}}!</h1>
 
+  <div class="row">
+    <div class="col-lg-12">
+      <button class="btn btn-secondary float-right" (click)="btnNewPerson();">New Person</button>
+    </div>
+  </div>
+
   <h3>All debts:</h3>
   <div id="accordion">
     <div class="card" *ngFor="let person of persons; let i = index">

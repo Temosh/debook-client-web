@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DebtService, UserService} from '../_services';
+import {PersonService, UserService} from '../_services';
 import {Person} from '../_models/person';
+import {Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -12,8 +13,9 @@ export class MainComponent implements OnInit {
   persons: Person[] = [];
 
   constructor(
+    private router: Router,
     private userService: UserService,
-    private localDebtService: DebtService
+    private personService: PersonService
   ) {
     this.currentUser = localStorage.getItem('currentUser');
   }
@@ -23,9 +25,13 @@ export class MainComponent implements OnInit {
   }
 
   private loadAllLocalDebts() {
-    this.localDebtService.getAll()
+    this.personService.getAll()
       .subscribe(
         (persons: Person[]) => this.persons = persons
       );
+  }
+
+  btnNewPerson() {
+    this.router.navigate(['/person/new']);
   }
 }
