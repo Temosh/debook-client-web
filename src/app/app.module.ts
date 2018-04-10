@@ -13,6 +13,7 @@ import {MainComponent} from './main/main.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {PersonCreateComponent} from './person/person_create.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {PersonCreateComponent} from './person/person_create.component';
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule,
+    NgbModule.forRoot(),
     routing
   ],
   declarations: [

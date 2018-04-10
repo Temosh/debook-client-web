@@ -5,3 +5,7 @@ a {
 .help-block {
   font-size: 12px;
 }
+
+ngb-accordion div.card {
+  margin-bottom: 0.5rem !important;
+}
