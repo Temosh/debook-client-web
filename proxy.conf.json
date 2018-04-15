@@ -1,9 +1,6 @@
 {
   "/api": {
-    "target": "http://summ.asuscomm.com:8080",
-    "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    }
+    "target": "http://localhost:8080",
+    "secure": false
   }
 }

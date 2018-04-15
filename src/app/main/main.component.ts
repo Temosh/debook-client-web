@@ -31,15 +31,15 @@ export class MainComponent implements OnInit {
       );
   }
 
-  private btnNewPerson() {
+  public btnNewPerson() {
     this.router.navigate(['/person/new']);
   }
 
-  private btnNewDebt() {
+  public btnNewDebt() {
 
   }
 
-  private btnEditDebt() {
+  public btnEditDebt() {
 
   }
 }
