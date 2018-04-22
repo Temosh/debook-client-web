@@ -22,17 +22,18 @@
             <li class="list-group-item" *ngFor="let debt of person.debts">
               <div class="row">
                 <div class="col">
-                  <span class="align-middle">{{debt.value}}{{debt.currency.sign}}</span>
+                  <span class="align-middle">{{getDebtValueWithSign(debt)}}{{debt.currency.sign}}</span>
                 </div>
                 <div class="col-sm">
-                  <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt();">Edit</button>
+                  <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt(debt, person);">Edit</button>
                 </div>
               </div>
             </li>
           </ul>
           <div class="row">
             <div class="col-lg-12">
-              <button class="btn btn-primary btn-sm float-right" (click)="btnNewDebt();">New Debt</button>
+              <!--<button class="btn btn-primary btn-sm float-right" onclick="$('#exampleModal').modal()">New Debt</button>-->
+              <button class="btn btn-primary btn-sm float-right" (click)="btnNewDebt(person);">New Debt</button>
             </div>
           </div>
         </div>
@@ -41,3 +42,6 @@
   </div>
   <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
+
+<app-modal-new-debt [person]="currentPerson" (close)="onNewDebt($event)"></app-modal-new-debt>
+<app-modal-edit-debt [person]="currentPerson" [debt]="currentDebt" [newDebtValue]="currentDebt && getDebtValueWithSign(currentDebt)" (close)="onDebtChange($event)"></app-modal-edit-debt>

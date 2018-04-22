@@ -1,0 +1,35 @@
+<div class="modal fade" id="modalNewDebt" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNewDebtLabel">New Debt</h5>
+        <button type="button" class="close" (click)="cancel()">&times;</button>
+      </div>
+      <form name="form" (ngSubmit)="f.form.valid && createDebt()" #f="ngForm" novalidate>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="currency">Currency</label>
+              <select class="form-control" id="currency" name="currency" required
+                      [ngClass]="{ 'is-invalid': f.submitted && !currency.valid }"
+                      [(ngModel)]="debt.currency" #currency="ngModel">
+                <option *ngFor="let cur of currencies" [ngValue]="cur">{{cur.code}}</option>
+              </select>
+              <div *ngIf="f.submitted && !currency.valid" class="invalid-feedback">Currency is required</div>
+            </div>
+            <div class="form-group">
+              <label for="value">Value</label>
+              <input type="number" class="form-control" id="value" name="value" required
+                     [ngClass]="{ 'is-invalid': f.submitted && !value.valid }"
+                     [(ngModel)]="debtValue" #value="ngModel"/>
+              <div *ngIf="f.submitted && !value.valid" class="invalid-feedback">Value is required</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

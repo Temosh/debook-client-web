@@ -13,6 +13,9 @@ import {MainComponent} from './main/main.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {PersonCreateComponent} from './person/person_create.component';
+import {DebtNewComponent} from './debt/debt_new.component';
+import {DebtEditComponent} from './debt/debt_edit.component';
+import {CurrencyService} from './_services/currency.service';
 
 @NgModule({
   imports: [
@@ -28,7 +31,9 @@ import {PersonCreateComponent} from './person/person_create.component';
     MainComponent,
     LoginComponent,
     RegisterComponent,
-    PersonCreateComponent
+    PersonCreateComponent,
+    DebtNewComponent,
+    DebtEditComponent
   ],
   providers: [
     AuthGuard,
@@ -36,7 +41,8 @@ import {PersonCreateComponent} from './person/person_create.component';
     AuthenticationService,
     UserService,
     PersonService,
-    DebtService
+    DebtService,
+    CurrencyService
   ],
   bootstrap: [AppComponent]
 })
