@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {Debt} from '../_models/debt';
 import {Observable} from 'rxjs/Rx';
 import {HttpErrorResponse} from '@angular/common/http';
-import {CreditType, LOAN_CREDIT_TYPE} from '../_models/credit_type';
+import {LOAN_CREDIT_TYPE} from '../_models/credit_type';
 declare var $: any;
 
 @Component({
@@ -14,11 +14,11 @@ declare var $: any;
 })
 
 export class MainComponent implements OnInit {
-  private currentUser: string;
-  private currentPerson: Person;
-  private currentDebt: Debt;
+  currentUser: string;
+  currentPerson: Person;
+  currentDebt: Debt;
 
-  private persons: Person[] = [];
+  persons: Person[] = [];
 
   constructor(
     private router: Router,
@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
       );
   }
 
-  protected getDebtValueWithSign(debt: Debt): number {
+  getDebtValueWithSign(debt: Debt): number {
     return debt.creditType.type === LOAN_CREDIT_TYPE.type ? debt.value : -debt.value;
   }
 

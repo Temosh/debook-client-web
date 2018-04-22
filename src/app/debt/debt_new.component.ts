@@ -17,10 +17,10 @@ export class DebtNewComponent implements OnInit {
   @Input() person: Person;
   @Output() close: EventEmitter<Observable<Debt>> = new EventEmitter();
 
-  private debt: Debt = new Debt();
-  private debtValue: number;
+  debt: Debt = new Debt();
+  debtValue: number;
 
-  private currencies: Currency[];
+  currencies: Currency[];
 
   constructor(
     private currencyService: CurrencyService,
