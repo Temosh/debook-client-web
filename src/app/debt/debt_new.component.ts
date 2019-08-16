@@ -4,7 +4,7 @@ import {Currency, Person} from '../_models';
 import {CurrencyService} from '../_services/currency.service';
 import {DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models/credit_type';
 import {DebtService} from '../_services';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/index';
 declare var $: any;
 
 @Component({

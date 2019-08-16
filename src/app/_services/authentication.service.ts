@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+
+import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import { AlertService } from './alert.service';
-import 'rxjs/operator/map';
+import {AlertService} from './alert.service';
+
 import {mergeMap} from 'rxjs/internal/operators';
-import {Observable} from 'rxjs/Rx';
+import {throwError} from 'rxjs/internal/observable/throwError';
 import {User} from '../_models';
 
 @Injectable()
@@ -18,15 +20,15 @@ export class AuthenticationService {
       .pipe(
         mergeMap(value =>
           // this.http.post('/api/login', JSON.stringify({ username: username, password: password }),
-          this.http.post('/api/login', null, {params: {username: username, password: password}, observe: 'response'})
-            .map((response: HttpResponse<Object>) => {
+          this.http.post('/api/login', null, {params: {username: username, password: password}, observe: 'response'}).pipe(
+            map((response: HttpResponse<Object>) => {
               if (response.ok) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', username);
               } else {
-                throw Observable.throwError(response.status + ' ' + response.statusText);
+                throw throwError(response.status + ' ' + response.statusText);
               }
-            })
+            }))
         )
       );
   }

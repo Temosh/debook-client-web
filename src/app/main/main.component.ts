@@ -3,7 +3,7 @@ import {AlertService, PersonService, UserService} from '../_services';
 import {Person} from '../_models/person';
 import {Router} from '@angular/router';
 import {Debt} from '../_models/debt';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/index';
 import {HttpErrorResponse} from '@angular/common/http';
 import {LOAN_CREDIT_TYPE} from '../_models/credit_type';
 declare var $: any;

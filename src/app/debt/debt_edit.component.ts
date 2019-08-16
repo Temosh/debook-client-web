@@ -3,7 +3,7 @@ import {Debt} from '../_models/debt';
 import {DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models/credit_type';
 import {Person} from '../_models';
 import {DebtService} from '../_services';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/index';
 declare var $: any;
 
 @Component({

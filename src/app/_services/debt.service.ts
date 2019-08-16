@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import 'rxjs/add/operator/map';
+
 import {Debt, Person} from '../_models';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/index';
 
 @Injectable()
 export class DebtService {
