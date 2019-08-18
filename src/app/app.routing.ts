@@ -8,9 +8,9 @@ import {PersonCreateComponent} from './person/person_create.component';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent, canActivate: [AuthGuard]},
+  {path: 'person/new', component: PersonCreateComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'person/new', component: PersonCreateComponent},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}
