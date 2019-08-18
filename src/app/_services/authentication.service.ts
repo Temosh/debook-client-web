@@ -6,7 +6,7 @@ import {AlertService} from './alert.service';
 
 import {mergeMap} from 'rxjs/internal/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
-import {User} from '../_models';
+import {Profile} from '../_models';
 
 @Injectable()
 export class AuthenticationService {
@@ -38,7 +38,7 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  register(user: User) {
+  register(user: Profile) {
     return this.http.options('/api/login')
       .pipe(
         mergeMap(() =>

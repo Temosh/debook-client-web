@@ -1,0 +1,31 @@
+<div class="modal fade" id="modalNewConnectionRequest" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNewConnectionRequestLabel">New connection request</h5>
+        <button type="button" class="close" (click)="cancel()">&times;</button>
+      </div>
+      <form name="form" (ngSubmit)="f.form.valid && send()" #f="ngForm" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="login">User login</label>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" id="login" name="login" required
+                       [ngClass]="{ 'is-invalid': f.submitted && !login.valid }"
+                       [(ngModel)]="userLogin" #login="ngModel"
+                       (change)="userNotFound = false"/>
+                <div *ngIf="f.submitted && !login.valid" class="invalid-feedback">User login is required</div>
+              </div>
+            </div>
+            <div *ngIf="f.submitted && userNotFound" class="text-danger">User not found</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

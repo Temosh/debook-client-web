@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AlertService, PersonService, UserService} from '../_services';
-import {Person} from '../_models/person';
+import {Person, Debt, Request, LOAN_CREDIT_TYPE} from '../_models';
 import {Router} from '@angular/router';
-import {Debt} from '../_models/debt';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
-import {LOAN_CREDIT_TYPE} from '../_models/credit_type';
 declare var $: any;
 
 @Component({
@@ -48,6 +46,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/person/new']);
   }
 
+  public btnNewConnection() {
+    $('#modalNewConnectionRequest').modal();
+  }
+
   public btnNewDebt(person: Person) {
     this.currentPerson = person;
     console.log(this.currentPerson);
@@ -72,6 +74,18 @@ export class MainComponent implements OnInit {
 
       (error: HttpErrorResponse) => {
         this.alertService.error('Failed to add new debt (' + error.status + ' - ' + error.statusText + ')'); // TODO Remove status code
+      }
+    );
+  }
+
+  public onNewConnection(observable: Observable<Request>) {
+    observable.subscribe(
+      () => {
+        // Do nothing
+      },
+
+      (error: HttpErrorResponse) => {
+        this.alertService.error('Failed to create connection request (' + error.status + ' - ' + error.statusText + ')'); // TODO Remove status code
       }
     );
   }
