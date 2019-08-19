@@ -4,9 +4,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {routing} from './app.routing';
+import {AppRoutingModule} from './app.routing';
 
-import {AlertComponent} from './_directives';
+import {AlertComponent, NavigationBarComponent} from './_directives';
 import {AuthGuard} from './_guards';
 import {AlertService, AuthenticationService, DebtService, PersonService, RequestService, UserService} from './_services';
 import {MainComponent} from './main/main.component';
@@ -17,6 +17,9 @@ import {DebtNewComponent} from './debt/debt_new.component';
 import {DebtEditComponent} from './debt/debt_edit.component';
 import {NewConnectionRequestComponent} from './request/new_connection_request.component';
 import {CurrencyService} from './_services/currency.service';
+import {ProfileComponent} from './profile/profile.component';
+import {RequestsComponent} from './request/requests.component';
+import {PeopleComponent} from './people/people.component';
 
 @NgModule({
   imports: [
@@ -24,7 +27,7 @@ import {CurrencyService} from './_services/currency.service';
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    routing
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -32,10 +35,14 @@ import {CurrencyService} from './_services/currency.service';
     MainComponent,
     LoginComponent,
     RegisterComponent,
+    PeopleComponent,
     PersonCreateComponent,
     DebtNewComponent,
     DebtEditComponent,
-    NewConnectionRequestComponent
+    NewConnectionRequestComponent,
+    RequestsComponent,
+    ProfileComponent,
+    NavigationBarComponent
   ],
   providers: [
     AuthGuard,
