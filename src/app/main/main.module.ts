@@ -1,18 +1,15 @@
 import {NgModule} from '@angular/core';
-import {PeopleComponent} from '../people/people.component';
-import {PersonCreateComponent} from '../person/person_create.component';
-import {DebtNewComponent} from '../debt/debt_new.component';
-import {DebtEditComponent} from '../debt/debt_edit.component';
-import {NewConnectionRequestComponent} from '../request/new_connection_request.component';
-import {RequestsComponent} from '../request/requests.component';
-import {ProfileComponent} from '../profile/profile.component';
+import {PeopleComponent, PersonCreateComponent} from '../people';
+import {DebtEditModalComponent, DebtNewModalComponent} from '../debt';
+import {NewConnectionRequestModalComponent, RequestsComponent} from '../request';
+import {ProfileComponent} from '../profile';
 import {NavigationBarComponent} from '../_directives';
 import {MainRoutingModule} from './main.routing';
-import {DebtService, RequestService, UserService} from '../_services';
+import {DebtService, UserService} from '../_services';
 import {CommonModule} from '@angular/common';
 import {MainComponent} from './main.component';
 import {FormsModule} from '@angular/forms';
-import {TabNavigationComponent} from './tab_navigation.component';
+import {NavigationComponent} from './navigation.component';
 
 @NgModule({
   imports: [
@@ -23,14 +20,14 @@ import {TabNavigationComponent} from './tab_navigation.component';
   declarations: [
     MainComponent,
     NavigationBarComponent,
-    TabNavigationComponent,
+    NavigationComponent,
     PeopleComponent,
     RequestsComponent,
     ProfileComponent,
     PersonCreateComponent,
-    DebtNewComponent,
-    DebtEditComponent,
-    NewConnectionRequestComponent
+    DebtNewModalComponent,
+    DebtEditModalComponent,
+    NewConnectionRequestModalComponent
   ],
   providers: [
     UserService,

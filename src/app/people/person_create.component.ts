@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AlertService, PersonService} from '../_services';
-import {Person} from '../_models/person';
+import {Person} from '../_models';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'person_create.component.html'
+  templateUrl: './person_create.component.html'
 })
 
 export class PersonCreateComponent implements OnInit {

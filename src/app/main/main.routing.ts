@@ -1,12 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './main.component';
 import {AuthGuard} from '../_guards';
-import {PeopleComponent} from '../people/people.component';
-import {RequestsComponent} from '../request/requests.component';
-import {ProfileComponent} from '../profile/profile.component';
-import {PersonCreateComponent} from '../person/person_create.component';
+import {PeopleComponent} from '../people';
+import {RequestsComponent} from '../request';
+import {ProfileComponent} from '../profile';
+import {PersonCreateComponent} from '../people';
 import {NgModule} from '@angular/core';
-import {TabNavigationComponent} from './tab_navigation.component';
+import {MainComponent} from './main.component';
+import {NavigationComponent} from './navigation.component';
 
 const mainRoutes: Routes = [
   {
@@ -16,7 +16,7 @@ const mainRoutes: Routes = [
     children: [
       {
         path: '',
-        component: TabNavigationComponent,
+        component: NavigationComponent,
         children: [
           {path: '', component: PeopleComponent},
           {path: 'requests', component: RequestsComponent},

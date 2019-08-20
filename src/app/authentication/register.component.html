@@ -3,35 +3,35 @@
   <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input type="text" class="form-control" name="firstName"
+      <input type="text" class="form-control" name="firstName" id="firstName"
              [ngClass]="{ 'is-invalid': f.submitted && !firstName.valid }"
              [(ngModel)]="model.firstName" #firstName="ngModel" required />
       <div *ngIf="f.submitted && !firstName.valid" class="invalid-feedback">First Name is required</div>
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" name="lastName"
+      <input type="text" class="form-control" name="lastName" id="lastName"
              [ngClass]="{ 'is-invalid': f.submitted && !lastName.valid }"
              [(ngModel)]="model.lastName" #lastName="ngModel" required />
       <div *ngIf="f.submitted && !lastName.valid" class="invalid-feedback">Last Name is required</div>
     </div>
     <div class="form-group">
       <label for="login">Login</label>
-      <input type="text" class="form-control" name="login"
+      <input type="text" class="form-control" name="login" id="login"
              [ngClass]="{ 'is-invalid': f.submitted && !login.valid }"
              [(ngModel)]="model.login" #login="ngModel" required />
       <div *ngIf="f.submitted && !login.valid" class="invalid-feedback">Login is required</div>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" class="form-control" name="email"
+      <input type="text" class="form-control" name="email" id="email"
              [ngClass]="{ 'is-invalid': f.submitted && !email.valid }"
              [(ngModel)]="model.email" #email="ngModel" required />
       <div *ngIf="f.submitted && !email.valid" class="invalid-feedback">Email is required</div>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" name="password"
+      <input type="password" class="form-control" name="password" id="password"
              [ngClass]="{ 'is-invalid': f.submitted && !password.valid }"
              [(ngModel)]="model.password" #password="ngModel" required />
       <div *ngIf="f.submitted && !password.valid" class="invalid-feedback">Password is required</div>

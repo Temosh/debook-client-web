@@ -9,9 +9,8 @@ import {AppRoutingModule} from './app.routing';
 import {AlertComponent} from './_directives';
 import {AuthGuard} from './_guards';
 import {AlertService, AuthenticationService} from './_services';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {MainModule} from './main/main.module';
+import {RegisterComponent, LoginComponent} from './authentication';
+import {MainModule} from './main';
 
 @NgModule({
   imports: [

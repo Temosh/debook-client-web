@@ -1,19 +1,17 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Debt} from '../_models/debt';
-import {DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models/credit_type';
-import {Person} from '../_models';
+import {Debt, Person, DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models';
 import {DebtService} from '../_services';
-import {Observable} from 'rxjs/index';
-import {DebtCreationEvent, DebtUpdateEvent} from '../_events';
+import {DebtUpdateEvent} from '../_events';
+
 declare var $: any;
 
 @Component({
   moduleId: module.id,
   selector: 'app-modal-edit-debt',
-  templateUrl: 'debt_edit.component.html'
+  templateUrl: 'debt_edit.modal.html'
 })
 
-export class DebtEditComponent implements OnInit {
+export class DebtEditModalComponent implements OnInit {
   @Input() debt: Debt;
   @Input() person: Person;
   @Input() newDebtValue: number;
@@ -21,7 +19,8 @@ export class DebtEditComponent implements OnInit {
 
   constructor(
     private debtService: DebtService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }

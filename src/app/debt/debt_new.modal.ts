@@ -7,9 +7,9 @@ declare var $: any;
 @Component({
   moduleId: module.id,
   selector: 'app-modal-new-debt',
-  templateUrl: 'debt_new.component.html'
+  templateUrl: 'debt_new.modal.html'
 })
-export class DebtNewComponent implements OnInit {
+export class DebtNewModalComponent implements OnInit {
   @Input() person: Person;
   @Output() close: EventEmitter<DebtCreationEvent> = new EventEmitter();
 

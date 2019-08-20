@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CONNECTION_REQUEST, Request, User} from '../_models';
 import {AlertService, RequestService, UserService} from '../_services';
@@ -9,10 +9,10 @@ declare var $: any;
 @Component({
   moduleId: module.id,
   selector: 'app-modal-new-connection-request',
-  templateUrl: 'new_connection_request.component.html'
+  templateUrl: 'new_connection_request.modal.html'
 })
 
-export class NewConnectionRequestComponent implements OnInit {
+export class NewConnectionRequestModalComponent implements OnInit {
   @Output() close: EventEmitter<Observable<Request>> = new EventEmitter();
   userLogin: string;
   userNotFound: boolean = false;

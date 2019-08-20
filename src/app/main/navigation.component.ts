@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {PersonService} from '../_services';
 
 @Component({
   moduleId: module.id,
-  templateUrl: './tab_navigation.component.html',
+  templateUrl: './navigation.component.html',
 })
-export class TabNavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit {
   currentUser: string;
 
   constructor() {
