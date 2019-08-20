@@ -1,5 +1,5 @@
 export class Currency {
-  id: number;
+  id: string;
   code: string;
   sign: string;
 }

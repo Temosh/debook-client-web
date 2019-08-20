@@ -1,8 +1,9 @@
 import {DebtRequestData} from './debt_request_data';
+import {User} from './user';
 
 export class Request {
   readonly type: string;
-  readonly userId: string;
+  readonly user: User;
   readonly personId: string = null;
   readonly message: string = null;
   processed: boolean;

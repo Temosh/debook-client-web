@@ -4,6 +4,7 @@ import {Person, Debt, Request, LOAN_CREDIT_TYPE} from '../_models';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
+import {DebtCreationEvent, DebtUpdateEvent} from '../_events';
 
 declare var $: any;
 
@@ -11,13 +12,10 @@ declare var $: any;
   moduleId: module.id,
   templateUrl: 'people.component.html'
 })
-
 export class PeopleComponent implements OnInit {
   currentUser: string;
   currentPerson: Person;
   currentDebt: Debt;
-
-  persons: Person[] = [];
 
   constructor(
     private router: Router,
@@ -29,14 +27,6 @@ export class PeopleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadAllLocalDebts();
-  }
-
-  private loadAllLocalDebts() {
-    this.personService.getAll()
-      .subscribe(
-        (persons: Person[]) => this.persons = persons
-      );
   }
 
   getDebtValueWithSign(debt: Debt): number {
@@ -64,13 +54,13 @@ export class PeopleComponent implements OnInit {
     $('#modalEditDebt').modal();
   }
 
-  public onNewDebt(observable: Observable<Debt>) {
+  public onNewDebt(debtEvent: DebtCreationEvent) {
     this.currentDebt = null;
     this.currentPerson = null;
 
-    observable.subscribe(
+    debtEvent.debtObservable.subscribe(
       (debt: Debt) => {
-        this.loadAllLocalDebts();
+        this.personService.addDebt(debtEvent.person, debt);
       },
 
       (error: HttpErrorResponse) => {
@@ -92,13 +82,14 @@ export class PeopleComponent implements OnInit {
   }
 
   // TODO The same as onNewDebt()
-  public onDebtChange(observable: Observable<Debt>) {
+  public onDebtChange(debEvent: DebtUpdateEvent) {
     this.currentDebt = null;
     this.currentPerson = null;
 
-    observable.subscribe(
+    debEvent.debtObservable.subscribe(
       (debt: Debt) => {
-        this.loadAllLocalDebts();
+        console.log(debt);
+        this.personService.updateDebt(debEvent.person, debt);
       },
 
       (error: HttpErrorResponse) => {

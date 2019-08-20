@@ -6,6 +6,8 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class RequestService {
 
+  private pendingRequests: Request[];
+
   constructor(private http: HttpClient) {
   }
 
@@ -13,7 +15,13 @@ export class RequestService {
     return this.http.post<Request>('/api/requests', request);
   }
 
-  getAllPending(): Observable<Request[]> {
-    return this.http.get<Request[]>('/api/requests/pending');
+  getAllPending(): Request[] {
+    if (this.pendingRequests === undefined) {
+      this.pendingRequests = [];
+      this.http.get<Request[]>('/api/requests/pending').subscribe(
+        (requests: Request[]) => this.pendingRequests = requests
+      );
+    }
+    return this.pendingRequests;
   }
 }

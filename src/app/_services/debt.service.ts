@@ -16,7 +16,7 @@ export class DebtService {
     return this.http.post<Debt>('/api/person/' + person.personId + '/debt', debt);
   }
 
-  update(debt: Debt, person: Person, currencyId: number): Observable<Debt> {
+  update(debt: Debt, person: Person, currencyId: string): Observable<Debt> {
     return this.http.patch<Debt>('/api/person/' + person.personId + '/debt/' + currencyId, debt);
   }
 }

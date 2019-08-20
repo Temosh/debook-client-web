@@ -5,7 +5,11 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private http: HttpClient
+  ) {
+  }
 
   // getAll() {
   //   return this.http.get('/api/users', this.jwt()).map((response) => response.json());
@@ -16,9 +20,9 @@ export class UserService {
     return this.http.get<User[]>('/api/users', {params: params});
   }
 
-  // getById(id: number) {
-  //   return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
-  // }
+  getById(id: string): Observable<User[]> {
+    return this.http.get<User[]>('/api/users/' + id);
+  }
 
   // create(user: Profile) {
   //   return this.http.post('/api/users', user, this.jwt());
@@ -39,7 +43,7 @@ export class UserService {
     // create authorization header with jwt token
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
-      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      const headers = new Headers({'Authorization': 'Bearer ' + currentUser.token});
       // return new RequestOptions({ headers: headers });
       return null;
     }

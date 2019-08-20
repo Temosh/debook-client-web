@@ -1,10 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Debt} from '../_models/debt';
-import {Currency, Person} from '../_models';
-import {CurrencyService} from '../_services/currency.service';
-import {DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models/credit_type';
-import {DebtService} from '../_services';
-import {Observable} from 'rxjs/index';
+import {Debt, Currency, Person, DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models';
+import {DebtService, CurrencyService} from '../_services';
+import {DebtCreationEvent} from '../_events';
 declare var $: any;
 
 @Component({
@@ -12,15 +9,14 @@ declare var $: any;
   selector: 'app-modal-new-debt',
   templateUrl: 'debt_new.component.html'
 })
-
 export class DebtNewComponent implements OnInit {
   @Input() person: Person;
-  @Output() close: EventEmitter<Observable<Debt>> = new EventEmitter();
+  @Output() close: EventEmitter<DebtCreationEvent> = new EventEmitter();
 
   debt: Debt = new Debt();
   debtValue: number;
 
-  currencies: Currency[];
+  currencies: Map<String, Currency>;
 
   constructor(
     private currencyService: CurrencyService,
@@ -28,7 +24,7 @@ export class DebtNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currencyService.getAll().subscribe((currencies: Currency[]) => this.currencies = currencies);
+    this.currencies = this.currencyService.getAll();
   }
 
   createDebt() {
@@ -40,8 +36,11 @@ export class DebtNewComponent implements OnInit {
       this.debt.value = Math.abs(this.debtValue);
     }
 
+    this.close.emit(<DebtCreationEvent>{
+      person: this.person,
+      debtObservable: this.debtService.create(this.debt, this.person)
+    });
     $('#modalNewDebt').modal('hide');
-    this.close.emit(this.debtService.create(this.debt, this.person));
 
     // this.debt.currency = null; // TODO
     // this.debtValue = null; // TODO

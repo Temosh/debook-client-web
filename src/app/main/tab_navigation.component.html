@@ -1,0 +1,6 @@
+<div class="col-md-6 col-md-offset-3">
+  <h1>Hi {{currentUser}}!</h1>
+  <app-navigation-bar></app-navigation-bar>
+  <router-outlet></router-outlet>
+  <p><a [routerLink]="['/login']">Logout</a></p>
+</div>

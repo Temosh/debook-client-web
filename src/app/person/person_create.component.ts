@@ -29,7 +29,8 @@ export class PersonCreateComponent implements OnInit {
     this.loading = true;
     this.personService.create(this.person)
       .subscribe(
-        data => {
+        (person: Person) => {
+          this.personService.addPerson(person);
           this.router.navigate([this.returnUrl]);
         },
         error => {

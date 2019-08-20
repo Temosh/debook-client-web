@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Event, NavigationEnd, Router} from '@angular/router';
 
 declare var $: any;
@@ -9,19 +9,19 @@ declare var $: any;
   templateUrl: 'navigation-bar.component.html'
 })
 
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent {
 
-  readonly PEOPLE_TAB = {
+  private readonly PEOPLE_TAB = {
     url: '/',
     button: 'peopleTabButton'
   };
 
-  readonly REQUESTS_TAB = {
+  private readonly REQUESTS_TAB = {
     url: '/requests',
     button: 'requestsTabButton'
   };
 
-  readonly PROFILE_TAB = {
+  private readonly PROFILE_TAB = {
     url: '/profile',
     button: 'profileTabButton'
   };
@@ -32,18 +32,14 @@ export class NavigationBarComponent implements OnInit {
     this.router.events
       .subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
-          console.log(event);
           this.tabs.forEach(tab => {
             if (tab.url === event.urlAfterRedirects) {
-              console.log('TEMP ' + tab.url);
               const buttonTag = '#' + tab.button;
               $(buttonTag).button('toggle');
+              return;
             }
           });
         }
       });
-  }
-
-  ngOnInit() {
   }
 }

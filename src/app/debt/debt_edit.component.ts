@@ -4,6 +4,7 @@ import {DEBT_CREDIT_TYPE, LOAN_CREDIT_TYPE} from '../_models/credit_type';
 import {Person} from '../_models';
 import {DebtService} from '../_services';
 import {Observable} from 'rxjs/index';
+import {DebtCreationEvent, DebtUpdateEvent} from '../_events';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class DebtEditComponent implements OnInit {
   @Input() debt: Debt;
   @Input() person: Person;
   @Input() newDebtValue: number;
-  @Output() close: EventEmitter<Observable<Debt>> = new EventEmitter();
+  @Output() close: EventEmitter<DebtUpdateEvent> = new EventEmitter();
 
   constructor(
     private debtService: DebtService
@@ -37,7 +38,10 @@ export class DebtEditComponent implements OnInit {
     }
 
     $('#modalEditDebt').modal('hide');
-    this.close.emit(this.debtService.update(newDebt, this.person, newDebt.currency.id));
+    this.close.emit(<DebtUpdateEvent>{
+      person: this.person,
+      debtObservable: this.debtService.update(newDebt, this.person, newDebt.currency.id)
+    });
   }
 
   cancel() {

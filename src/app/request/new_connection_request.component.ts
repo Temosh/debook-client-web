@@ -33,7 +33,9 @@ export class NewConnectionRequestComponent implements OnInit {
       (users: User[]) => {
         const newConnectionRequest: Request = <Request>{
           type: CONNECTION_REQUEST,
-          userId: users[0].id,
+          user: <User>{
+            id: users[0].id
+          },
         };
 
         $('#modalNewConnectionRequest').modal('hide');

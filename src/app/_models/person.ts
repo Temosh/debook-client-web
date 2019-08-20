@@ -1,7 +1,7 @@
 import {Debt} from './debt';
 
 export class Person {
-  personId: number;
+  personId: string;
   name: string;
   surname: string;
   debts: Debt[];

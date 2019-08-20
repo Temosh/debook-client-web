@@ -1,17 +1,21 @@
 import {Component, OnInit} from '@angular/core';
+import {CurrencyService, PersonService, RequestService} from '../_services';
 
 @Component({
   moduleId: module.id,
-  templateUrl: './main.component.html'
+  templateUrl: './main.component.html',
+  providers: [PersonService, CurrencyService, RequestService]
 })
-
 export class MainComponent implements OnInit {
-  currentUser: string;
 
-  constructor() {
-    this.currentUser = localStorage.getItem('currentUser'); // TODO
+  constructor(
+    private personService: PersonService,
+    private currencyService: CurrencyService
+  ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.personService.init();
+    this.currencyService.init();
   }
 }

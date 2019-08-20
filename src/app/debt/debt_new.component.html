@@ -12,7 +12,7 @@
               <select class="form-control" id="currency" name="currency" required
                       [ngClass]="{ 'is-invalid': f.submitted && !currency.valid }"
                       [(ngModel)]="debt.currency" #currency="ngModel">
-                <option *ngFor="let cur of currencies" [ngValue]="cur">{{cur.code}}</option>
+                <option *ngFor="let cur of currencies | keyvalue" [ngValue]="cur.value">{{cur.value.code}}</option>
               </select>
               <div *ngIf="f.submitted && !currency.valid" class="invalid-feedback">Currency is required</div>
             </div>
