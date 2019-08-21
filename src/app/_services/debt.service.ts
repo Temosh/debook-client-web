@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {Debt, Person} from '../_models';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class DebtService {

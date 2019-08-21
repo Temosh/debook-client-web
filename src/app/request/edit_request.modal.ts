@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Observable} from 'rxjs';
 import {CONNECTION_REQUEST, DEBT_REQUEST, DebtRequestData, Request} from '../_models';
 import {AlertService, PersonService, RequestService, UserService} from '../_services';
+import {RequestAction, RequestEvent} from '../_events';
 
 declare var $: any;
 
@@ -20,7 +20,7 @@ export class EditRequestModalComponent implements OnInit {
   // -------------------
 
   @Input() request: Request;
-  @Output() action: EventEmitter<Observable<Request>> = new EventEmitter();
+  @Output() eventEmitter: EventEmitter<RequestEvent> = new EventEmitter();
 
   private editMode: boolean = false;
   newDebtData: DebtRequestData;
@@ -45,10 +45,26 @@ export class EditRequestModalComponent implements OnInit {
   }
 
   reject() {
-
+    const newRequest = {...this.request};
+    newRequest.rejected = true;
+    newRequest.processed = true;
+    this.eventEmitter.emit(<RequestEvent>{
+      request: this.request,
+      action: RequestAction.REJECT,
+      observable: this.requestService.update(newRequest)
+    });
+    this.close();
   }
 
   accept() {
-
+    const newRequest = {...this.request};
+    newRequest.rejected = false;
+    newRequest.processed = true;
+    this.eventEmitter.emit(<RequestEvent>{
+      request: this.request,
+      action: RequestAction.ACCEPT,
+      observable: this.requestService.update(newRequest)
+    });
+    this.close();
   }
 }

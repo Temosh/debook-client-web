@@ -48,9 +48,9 @@
       </div>
       <div class="modal-footer">
 <!--        <button *ngIf="!editMode" type="button" class="btn btn-secondary mr-auto" (click)="editMode = true">Edit</button>-->
-        <button *ngIf="!editMode" type="button" class="btn btn-secondary mr-auto disabled">Edit</button>
+        <button *ngIf="!editMode" type="button" class="btn btn-secondary mr-auto" (click)="editMode = true" disabled>Edit</button>
         <button *ngIf="!editMode" type="button" class="btn btn-danger" (click)="reject()">Reject</button>
-        <button *ngIf="!editMode" type="button" class="btn btn-success" (click)="accept()">Accept</button>
+        <button *ngIf="!editMode" type="button" class="btn btn-success" (click)="accept()" [disabled]="request.lastUpdaterId !== request.user.id">Accept</button>
         <button *ngIf="editMode" type="button" class="btn btn-secondary" (click)="editMode = false">Cancel</button>
         <button *ngIf="editMode" type="submit" class="btn btn-primary">Send</button>
       </div>

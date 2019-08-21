@@ -2,6 +2,7 @@ import {DebtRequestData} from './debt_request_data';
 import {User} from './user';
 
 export class Request {
+  readonly id: string;
   readonly type: string;
   readonly user: User;
   readonly personId: string = null;

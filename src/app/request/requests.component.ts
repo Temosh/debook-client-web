@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AlertService, PersonService, RequestService} from '../_services';
 import {CONNECTION_REQUEST, DEBT_REQUEST, Request} from '../_models';
+import {RequestAction, RequestEvent} from '../_events';
+import {HttpErrorResponse} from '@angular/common/http';
 
 declare var $: any;
 
@@ -36,7 +38,28 @@ export class RequestsComponent implements OnInit {
     $('#modalEditRequest').modal();
   }
 
-  onRequestAction($event) {
-
+  onRequestEvent(event: RequestEvent) {
+    switch (event.action) {
+      case RequestAction.ACCEPT:
+        event.observable.subscribe(
+          (request: Request) => {
+            this.requestService.removePendingRequest(event.request);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+            this.alertService.error('Failed to accept request (' + error.status + ' - ' + error.statusText + ')'); // TODO Remove status code
+          });
+        break;
+      case RequestAction.REJECT:
+        event.observable.subscribe(
+          (request: Request) => {
+            this.requestService.removePendingRequest(event.request);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+            this.alertService.error('Failed to reject request (' + error.status + ' - ' + error.statusText + ')'); // TODO Remove status code
+          });
+        break;
+    }
   }
 }

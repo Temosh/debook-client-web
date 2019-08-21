@@ -22,4 +22,4 @@
   </div>
 </div>
 
-<app-modal-edit-request [request]="selectedRequest" (action)="onRequestAction($event)"></app-modal-edit-request>
+<app-modal-edit-request [request]="selectedRequest" (eventEmitter)="onRequestEvent($event)"></app-modal-edit-request>
