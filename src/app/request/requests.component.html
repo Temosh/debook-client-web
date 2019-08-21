@@ -5,7 +5,7 @@
         <b>Connection</b> {{request.user.name}}
       </div>
       <div class="float-left" *ngIf="request.type === DEBT_REQUEST">
-        <b>Debt</b> {{personService.getPerson(request.personId).name}} {{personService.getPerson(request.personId).surname}}
+        <b>Debt</b> {{personService.getPerson(request.personId)?.name}} {{personService.getPerson(request.personId)?.surname}}
       </div>
     </a>
   </div>

@@ -8,18 +8,15 @@
       <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
         <div class="modal-body">
           <div class="form-group">
-            <label for="value">Value</label>
-            <div class="row">
-              <div class="col">
-                <input type="number" class="form-control" id="value" name="value" required
-                       [ngClass]="{ 'is-invalid': f.submitted && !value.valid }"
-                       [(ngModel)]="newDebtValue" #value="ngModel"/>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">{{debt?.currency.code}}</span>
               </div>
-              <div class="col-sm">
-                <label>{{debt?.currency.code}}</label>
-              </div>
+              <input type="number" class="form-control" id="value" name="value" required
+                     [ngClass]="{ 'is-invalid': f.submitted && !value.valid }"
+                     [(ngModel)]="newDebtValue" #value="ngModel"/>
+              <div *ngIf="f.submitted && !value.valid" class="invalid-feedback">Value is required</div>
             </div>
-            <div *ngIf="f.submitted && !value.valid" class="invalid-feedback">Value is required</div>
           </div>
         </div>
         <div class="modal-footer">

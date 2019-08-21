@@ -16,17 +16,15 @@
     <div id="collapse_{{i}}" class="collapse" [attr.aria-labelledby]="'heading_' + i" data-parent="#accordion">
       <div class="card-body">
         <ul class="list-group mb-2">
-          <li class="list-group-item" *ngFor="let debt of person.value.debts">
-            <div class="row">
-              <div class="col" [ngClass]="{
-                  'text-success': debt.creditType.type === LOAN_CREDIT_TYPE,
-                  'text-danger': debt.creditType.type === DEBT_CREDIT_TYPE
-                }">
-                <span class="align-middle"><b>{{debt.creditType.type | titlecase}}</b> {{debt.value}}  {{debt.currency.sign}}</span>
-              </div>
-              <div class="col-sm">
-                <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt(debt, person.value);">Edit</button>
-              </div>
+          <li class="list-group-item d-flex" *ngFor="let debt of person.value.debts">
+            <div [ngClass]="{
+                'text-success': debt.creditType.type === LOAN_CREDIT_TYPE,
+                'text-danger': debt.creditType.type === DEBT_CREDIT_TYPE
+              }">
+              <span class="align-middle"><b>{{debt.creditType.type | titlecase}}</b> {{debt.value}}  {{debt.currency.sign}}</span>
+            </div>
+            <div class="ml-auto">
+              <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt(debt, person.value);">Edit</button>
             </div>
           </li>
         </ul>
