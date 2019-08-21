@@ -6,7 +6,7 @@
 </div>
 
 <div id="accordion">
-  <div class="card mb-2" *ngFor="let person of personService.getAll() | keyvalue; let i = index">
+  <div class="card mb-2" *ngFor="let person of personService.getAllPeople() | keyvalue; let i = index">
     <div class="card-header p-0" id="heading_{{i}}">
       <a class="btn btn-block p-3 text-left" role="button" data-toggle="collapse" [attr.data-target]="'#collapse_' + i" aria-expanded="true" [attr.aria-controls]="'collapse_' + i">
         {{person.value.name}} {{person.value.surname}}
@@ -18,8 +18,11 @@
         <ul class="list-group mb-2">
           <li class="list-group-item" *ngFor="let debt of person.value.debts">
             <div class="row">
-              <div class="col">
-                <span class="align-middle">{{getDebtValueWithSign(debt)}}{{debt.currency.sign}}</span>
+              <div class="col" [ngClass]="{
+                  'text-success': debt.creditType.type === LOAN_CREDIT_TYPE,
+                  'text-danger': debt.creditType.type === DEBT_CREDIT_TYPE
+                }">
+                <span class="align-middle"><b>{{debt.creditType.type | titlecase}}</b> {{debt.value}}  {{debt.currency.sign}}</span>
               </div>
               <div class="col-sm">
                 <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt(debt, person.value);">Edit</button>

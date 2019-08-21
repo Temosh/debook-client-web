@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class PersonService implements OnDestroy {
 
-  people: Map<String, Person> = new Map();
+  people: Map<string, Person> = new Map();
 
   constructor(
     private http: HttpClient,
@@ -24,11 +24,11 @@ export class PersonService implements OnDestroy {
     console.log('PersonService.onDestroy');
   }
 
-  get(personId: string) {
+  getPerson(personId: string): Person {
     return this.people.get(personId);
   }
 
-  getAll(): Map<String, Person> {
+  getAllPeople(): Map<String, Person> {
     return this.people;
   }
 
@@ -41,11 +41,11 @@ export class PersonService implements OnDestroy {
   }
 
   addDebt(person: Person, debt: Debt) {
-    this.people.get(person.personId).debts.push(debt);
+    this.getPerson(person.personId).debts.push(debt);
   }
 
   updateDebt(person: Person, modifiedDebt: Debt) {
-    this.people.get(person.personId).debts.forEach((debt: Debt) => {
+    this.getPerson(person.personId).debts.forEach((debt: Debt) => {
       if (debt.id === modifiedDebt.id) {
         debt.currency = modifiedDebt.currency;
         debt.creditType = modifiedDebt.creditType;

@@ -13,6 +13,11 @@ declare var $: any;
   templateUrl: 'people.component.html'
 })
 export class PeopleComponent implements OnInit {
+  // TODO Should be enum
+  private readonly LOAN_CREDIT_TYPE: string = 'LOAN';
+  private readonly DEBT_CREDIT_TYPE: string = 'DEBT';
+  // -------------------
+
   currentUser: string;
   currentPerson: Person;
   currentDebt: Debt;
