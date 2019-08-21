@@ -1,15 +1,25 @@
 <div class="card mb-2" style="width: 18rem;" *ngFor="let request of requestService.getAllPending(); let i = index">
   <div class="card-header" id="heading_{{i}}">
-    <div *ngIf="request.type === CONNECTION_REQUEST">
-      <b>Connection</b> {{request.user.name}}
-    </div>
-    <div *ngIf="request.type === DEBT_REQUEST">
-      <b>Debt</b> {{personService.get(request.personId).name}} {{personService.get(request.personId).surname}}
-    </div>
+    <a class="btn btn-block p-0" role="button" (click)="onRequestClick(request)">
+      <div class="float-left" *ngIf="request.type === CONNECTION_REQUEST">
+        <b>Connection</b> {{request.user.name}}
+      </div>
+      <div class="float-left" *ngIf="request.type === DEBT_REQUEST">
+        <b>Debt</b> {{personService.getPerson(request.personId).name}} {{personService.getPerson(request.personId).surname}}
+      </div>
+    </a>
   </div>
   <div class="card-body" *ngIf="request.data.length > 0">
-    <ul class="list-group list-group-flush" *ngFor="let debt of request.data">
-      <li class="list-group-item"><b>{{debt.creditType}}</b> {{debt.value}}{{debt.currency.code}}</li>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let debt of request.data"
+          [ngClass]="{
+            'text-success': debt.creditType === LOAN_CREDIT_TYPE,
+            'text-danger': debt.creditType === DEBT_CREDIT_TYPE
+          }">
+        <b>{{debt.creditType | titlecase}}</b> {{debt.value}} {{debt.currency.code}}
+      </li>
     </ul>
   </div>
 </div>
+
+<app-modal-edit-request [request]="selectedRequest" (action)="onRequestAction($event)"></app-modal-edit-request>

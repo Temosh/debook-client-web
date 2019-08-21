@@ -1,0 +1,59 @@
+<div class="modal fade" id="modalEditRequest" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="request !== undefined">
+      <div class="modal-header">
+        <div *ngIf="request.type === CONNECTION_REQUEST">
+          <b>Connection</b> {{request.user.name}}
+        </div>
+        <div *ngIf="request.type === DEBT_REQUEST">
+          <b>Debt</b> {{personService.getPerson(request.personId).name}} {{personService.getPerson(request.personId).surname}}
+        </div>
+        <button type="button" class="close" (click)="close()">&times;</button>
+      </div>
+      <div class="modal-body" *ngIf="!editMode">
+        <label *ngIf="request.message !== null">{{request.message}}</label>
+        <div *ngIf="request.data.length > 0">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let debt of request.data"
+                [ngClass]="{
+                  'text-success': debt.creditType === LOAN_CREDIT_TYPE,
+                  'text-danger': debt.creditType === DEBT_CREDIT_TYPE
+                }">
+              <b>{{debt.creditType | titlecase}}</b> {{debt.value}} {{debt.currency.code}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-body" *ngIf="editMode">
+        <form name="form" (ngSubmit)="f.form.valid && send()" #f="ngForm" novalidate>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let debt of request.data">
+              <div class="row">
+                <div class="col">
+                  <input type="number" class="form-control" id="value" name="value" required
+                         [ngClass]="{ 'is-invalid': f.submitted && !value.valid }"
+                         [(ngModel)]="newDebtData" #value="ngModel"/>
+                </div>
+                <div class="col-sm">
+                  <label>{{debt.currency.code}}</label>
+                </div>
+                <div class="float-right">
+                  <button class="btn btn-sm btn-danger">&times;</button>
+                </div>
+                <div *ngIf="f.submitted && !value.valid" class="invalid-feedback">Value is required</div>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div class="modal-footer">
+<!--        <button *ngIf="!editMode" type="button" class="btn btn-secondary mr-auto" (click)="editMode = true">Edit</button>-->
+        <button *ngIf="!editMode" type="button" class="btn btn-secondary mr-auto disabled">Edit</button>
+        <button *ngIf="!editMode" type="button" class="btn btn-danger" (click)="reject()">Reject</button>
+        <button *ngIf="!editMode" type="button" class="btn btn-success" (click)="accept()">Accept</button>
+        <button *ngIf="editMode" type="button" class="btn btn-secondary" (click)="editMode = false">Cancel</button>
+        <button *ngIf="editMode" type="submit" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
