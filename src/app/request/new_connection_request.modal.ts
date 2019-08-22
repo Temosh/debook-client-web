@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs';
-import {CONNECTION_REQUEST, Request, User} from '../_models';
+import {CONNECTION_REQUEST, Person, Request, User} from '../_models';
 import {AlertService, RequestService, UserService} from '../_services';
 import {HttpErrorResponse} from '@angular/common/http';
 
@@ -13,7 +13,9 @@ declare var $: any;
 })
 
 export class NewConnectionRequestModalComponent implements OnInit {
+  @Input() person: Person;
   @Output() close: EventEmitter<Observable<Request>> = new EventEmitter();
+
   userLogin: string;
   userNotFound: boolean = false;
 
@@ -33,6 +35,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
       (users: User[]) => {
         const newConnectionRequest: Request = <Request>{
           type: CONNECTION_REQUEST,
+          personId: this.person ? this.person.personId : null,
           user: <User>{
             id: users[0].id
           },

@@ -42,20 +42,25 @@ export class PeopleComponent implements OnInit {
     this.router.navigate(['/person/new']);
   }
 
-  public btnNewConnection() {
+  public btnNewConnection(person: Person = null) {
+    this.currentPerson = person;
     $('#modalNewConnectionRequest').modal();
+  }
+
+  public btnDeleteConnection(person: Person) {
+  }
+
+  public btnNewDebtRequest(person: Person) {
   }
 
   public btnNewDebt(person: Person) {
     this.currentPerson = person;
-    console.log(this.currentPerson);
     $('#modalNewDebt').modal();
   }
 
   public btnEditDebt(debt: Debt, person: Person) {
     this.currentDebt = debt;
     this.currentPerson = person;
-    console.log(this.currentPerson);
     $('#modalEditDebt').modal();
   }
 
@@ -75,6 +80,8 @@ export class PeopleComponent implements OnInit {
   }
 
   public onNewConnection(observable: Observable<Request>) {
+    this.currentPerson = null;
+
     observable.subscribe(
       () => {
         // Do nothing
