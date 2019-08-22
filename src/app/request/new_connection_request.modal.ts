@@ -16,8 +16,8 @@ export class NewConnectionRequestModalComponent implements OnInit {
   @Input() person: Person;
   @Output() eventEmitter: EventEmitter<RequestEvent> = new EventEmitter();
 
-  private userLogin: string;
-  private userNotFound: boolean = false;
+  public userLogin: string;
+  public userNotFound: boolean = false;
 
   constructor(
     private requestService: RequestService,
@@ -29,7 +29,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  private send() {
+  public send() {
     this.userNotFound = false;
     this.userService.getByLogin(this.userLogin).subscribe(
       (users: User[]) => {
@@ -60,7 +60,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
     );
   }
 
-  private cancel() {
+  public cancel() {
     $('#modalNewConnectionRequest').modal('hide');
   }
 }

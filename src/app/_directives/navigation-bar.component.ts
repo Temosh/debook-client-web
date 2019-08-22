@@ -11,17 +11,17 @@ declare var $: any;
 
 export class NavigationBarComponent {
 
-  private readonly PEOPLE_TAB = {
+  public readonly PEOPLE_TAB = {
     url: '/',
     button: 'peopleTabButton'
   };
 
-  private readonly REQUESTS_TAB = {
+  public readonly REQUESTS_TAB = {
     url: '/requests',
     button: 'requestsTabButton'
   };
 
-  private readonly PROFILE_TAB = {
+  public readonly PROFILE_TAB = {
     url: '/profile',
     button: 'profileTabButton'
   };

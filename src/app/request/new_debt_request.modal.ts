@@ -22,8 +22,8 @@ export class NewDebtRequestModalComponent implements OnInit {
   @Output() eventEmitter: EventEmitter<RequestEvent> = new EventEmitter();
   @ViewChild('f', {static: true}) debtForm: NgForm;
 
-  private availableCurrencies: Map<string, Currency>;
-  private newDebtData: DebtRequestData = new DebtRequestData();
+  public availableCurrencies: Map<string, Currency>;
+  public newDebtData: DebtRequestData = new DebtRequestData();
 
   constructor(
     private requestService: RequestService,
@@ -36,11 +36,11 @@ export class NewDebtRequestModalComponent implements OnInit {
     this.availableCurrencies = this.currencyService.getAll();
   }
 
-  private getCreditTypes(): string[] {
+  public getCreditTypes(): string[] {
     return [this.LOAN_CREDIT_TYPE, this.DEBT_CREDIT_TYPE];
   }
 
-  private send(): void {
+  public send(): void {
     const newDebtRequest: Request = <Request>{
       type: DEBT_REQUEST,
       personId: this.person.personId,
@@ -58,7 +58,7 @@ export class NewDebtRequestModalComponent implements OnInit {
     this.close();
   }
 
-  private close(): void {
+  public close(): void {
     this.debtForm.resetForm();
     this.newDebtData = new DebtRequestData();
     $('#modalNewDebtRequest').modal('hide');

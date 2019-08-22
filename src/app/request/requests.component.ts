@@ -20,12 +20,12 @@ export class RequestsComponent implements OnInit {
   private readonly DEBT_CREDIT_TYPE: string = 'DEBT';
   // -------------------
 
-  private selectedRequest: Request;
+  public selectedRequest: Request;
 
   constructor(
     private router: Router,
     private alertService: AlertService,
-    private requestService: RequestService,
+    public requestService: RequestService,
     private personService: PersonService
   ) {
   }

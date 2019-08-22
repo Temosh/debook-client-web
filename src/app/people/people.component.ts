@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertService, PersonService, UserService} from '../_services';
+import {AlertService, PersonService} from '../_services';
 import {Person, Debt, LOAN_CREDIT_TYPE} from '../_models';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -24,8 +24,7 @@ export class PeopleComponent implements OnInit {
   constructor(
     private router: Router,
     private alertService: AlertService,
-    private userService: UserService,
-    private personService: PersonService
+    public personService: PersonService
   ) {
     this.currentUser = localStorage.getItem('currentUser'); // TODO
   }
