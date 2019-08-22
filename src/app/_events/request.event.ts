@@ -8,6 +8,8 @@ export class RequestEvent {
 }
 
 export enum RequestAction {
+  NEW,
+  CANCEL,
   ACCEPT,
   REJECT,
   MODIFY

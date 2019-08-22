@@ -1,0 +1,47 @@
+<div class="modal fade" id="modalNewDebtRequest" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNewDebtRequestLabel">New debt request</h5>
+        <button type="button" class="close" (click)="close()">&times;</button>
+      </div>
+      <form name="form" (ngSubmit)="f.form.valid && send()" #f="ngForm" novalidate>
+        <div class="modal-body">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Message</span>
+            </div>
+            <input type="text" class="form-control" id="message" name="message"
+                   [(ngModel)]="newDebtData.message" #message="ngModel"/>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <select class="input-group-text form-control" id="currency" name="currency" required
+                      [ngClass]="{ 'is-invalid': f.submitted && !currency.valid }"
+                      [(ngModel)]="newDebtData.currency" #currency="ngModel">
+                <option *ngFor="let currency of availableCurrencies | keyvalue"
+                        [ngValue]="currency.value">{{currency.value.code}}</option>
+              </select>
+            </div>
+            <input type="number" class="form-control" id="value" name="value" required
+                   [ngClass]="{ 'is-invalid': f.submitted && !value.valid}"
+                   [(ngModel)]="newDebtData.value" #value="ngModel"/>
+            <div class="input-group-append">
+              <select class="input-group-text form-control" id="creditType" name="creditType" required
+                      [ngClass]="{ 'is-invalid': f.submitted && !creditType.valid }"
+                      [(ngModel)]="newDebtData.creditType" #creditType="ngModel">
+                <option *ngFor="let creditType of getCreditTypes()"
+                        [ngValue]="creditType">{{creditType | titlecase}}</option>
+              </select>
+            </div>
+            <div *ngIf="f.submitted && !value.valid" class="invalid-feedback">Value greater than zero is required</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

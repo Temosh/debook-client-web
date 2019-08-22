@@ -34,7 +34,7 @@
           <button class="btn btn-outline-danger btn-sm" *ngIf="person.value.connectedUserId && !person.value.connectionApproved" (click)="btnDeleteConnection(person.value)" disabled>Cancel</button>
           <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectedUserId && !person.value.connectionApproved" disabled>Connection requested</button>
           <button class="btn btn-outline-danger btn-sm" *ngIf="person.value.connectionApproved" (click)="btnDeleteConnection(person.value)" disabled>Disconnect</button>
-          <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectionApproved" (click)="btnNewDebtRequest(person.value)" disabled>Debt Request</button>
+          <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectionApproved" (click)="btnNewDebtRequest(person.value)">Debt Request</button>
         </div>
       </div>
     </div>
@@ -43,4 +43,5 @@
 
 <app-modal-new-debt [person]="currentPerson" (close)="onNewDebt($event)"></app-modal-new-debt>
 <app-modal-edit-debt [person]="currentPerson" [debt]="currentDebt" [newDebtValue]="currentDebt && getDebtValueWithSign(currentDebt)" (close)="onDebtChange($event)"></app-modal-edit-debt>
-<app-modal-new-connection-request [person]="currentPerson" (close)="onNewConnection($event)"></app-modal-new-connection-request>
+<app-modal-new-connection-request [person]="currentPerson" (eventEmitter)="onNewRequest($event)"></app-modal-new-connection-request>
+<app-modal-new-debt-request [person]="currentPerson" (eventEmitter)="onNewRequest($event)"></app-modal-new-debt-request>

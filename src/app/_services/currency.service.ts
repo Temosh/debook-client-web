@@ -5,7 +5,7 @@ import {Currency} from '../_models';
 @Injectable()
 export class CurrencyService {
 
-  currencies: Map<String, Currency> = new Map();
+  currencies: Map<string, Currency> = new Map();
 
   constructor(private http: HttpClient) {
   }

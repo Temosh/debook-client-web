@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {PeopleComponent, PersonCreateComponent} from '../people';
 import {DebtEditModalComponent, DebtNewModalComponent} from '../debt';
-import {EditRequestModalComponent, NewConnectionRequestModalComponent, RequestsComponent} from '../request';
+import {EditRequestModalComponent, NewConnectionRequestModalComponent, NewDebtRequestModalComponent, RequestsComponent} from '../request';
 import {ProfileComponent} from '../profile';
 import {NavigationBarComponent} from '../_directives';
 import {MainRoutingModule} from './main.routing';
@@ -28,6 +28,7 @@ import {NavigationComponent} from './navigation.component';
     DebtNewModalComponent,
     DebtEditModalComponent,
     NewConnectionRequestModalComponent,
+    NewDebtRequestModalComponent,
     EditRequestModalComponent
   ],
   providers: [

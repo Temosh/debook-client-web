@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Observable} from 'rxjs';
 import {CONNECTION_REQUEST, Person, Request, User} from '../_models';
 import {AlertService, RequestService, UserService} from '../_services';
 import {HttpErrorResponse} from '@angular/common/http';
+import {RequestAction, RequestEvent} from '../_events';
 
 declare var $: any;
 
@@ -14,10 +14,10 @@ declare var $: any;
 
 export class NewConnectionRequestModalComponent implements OnInit {
   @Input() person: Person;
-  @Output() close: EventEmitter<Observable<Request>> = new EventEmitter();
+  @Output() eventEmitter: EventEmitter<RequestEvent> = new EventEmitter();
 
-  userLogin: string;
-  userNotFound: boolean = false;
+  private userLogin: string;
+  private userNotFound: boolean = false;
 
   constructor(
     private requestService: RequestService,
@@ -29,7 +29,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  send() {
+  private send() {
     this.userNotFound = false;
     this.userService.getByLogin(this.userLogin).subscribe(
       (users: User[]) => {
@@ -42,7 +42,11 @@ export class NewConnectionRequestModalComponent implements OnInit {
         };
 
         $('#modalNewConnectionRequest').modal('hide');
-        this.close.emit(this.requestService.create(newConnectionRequest));
+        this.eventEmitter.emit(<RequestEvent>{
+          request: newConnectionRequest,
+          action: RequestAction.NEW,
+          observable: this.requestService.create(newConnectionRequest)
+        });
       },
 
       (error: HttpErrorResponse) => {
@@ -56,7 +60,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
     );
   }
 
-  cancel() {
+  private cancel() {
     $('#modalNewConnectionRequest').modal('hide');
   }
 }

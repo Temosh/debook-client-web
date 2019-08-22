@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CONNECTION_REQUEST, DEBT_REQUEST, DebtRequestData, Request} from '../_models';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CONNECTION_REQUEST, Currency, DEBT_REQUEST, DebtRequestData, Request} from '../_models';
 import {AlertService, PersonService, RequestService, UserService} from '../_services';
 import {RequestAction, RequestEvent} from '../_events';
 
@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: 'edit_request.modal.html'
 })
 
-export class EditRequestModalComponent implements OnInit {
+export class EditRequestModalComponent {
   // TODO Should be enum
   private readonly CONNECTION_REQUEST: string = CONNECTION_REQUEST;
   private readonly DEBT_REQUEST: string = DEBT_REQUEST;
@@ -23,7 +23,8 @@ export class EditRequestModalComponent implements OnInit {
   @Output() eventEmitter: EventEmitter<RequestEvent> = new EventEmitter();
 
   private editMode: boolean = false;
-  newDebtData: DebtRequestData;
+  private newDebtData: DebtRequestData;
+  private debtDataMap: Map<Currency, DebtRequestData> = new Map();
 
   constructor(
     private alertService: AlertService,
@@ -33,18 +34,19 @@ export class EditRequestModalComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  private getDebtDataForm(debtData: DebtRequestData): DebtRequestData {
+    return this.debtDataMap.get(debtData.currency);
   }
 
-  close() {
+  private close() {
     $('#modalEditRequest').modal('hide');
     this.editMode = false;
   }
 
-  send() {
+  private send() {
   }
 
-  reject() {
+  private reject() {
     const newRequest = {...this.request};
     newRequest.rejected = true;
     newRequest.processed = true;
@@ -56,7 +58,7 @@ export class EditRequestModalComponent implements OnInit {
     this.close();
   }
 
-  accept() {
+  private accept() {
     const newRequest = {...this.request};
     newRequest.rejected = false;
     newRequest.processed = true;
