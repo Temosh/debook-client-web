@@ -1,4 +1,4 @@
-<div class="card mb-2" style="width: 18rem;" *ngFor="let request of requestService.getAllPending(); let i = index">
+<div class="card mb-2" *ngFor="let request of requestService.getAllPending(); let i = index">
   <div class="card-header" id="heading_{{i}}">
     <a class="btn btn-block p-0" role="button" (click)="onRequestClick(request)">
       <div class="float-left" *ngIf="request.type === CONNECTION_REQUEST">
