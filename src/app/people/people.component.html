@@ -23,18 +23,18 @@
               }">
               <span class="align-middle"><b>{{debt.creditType.type | titlecase}}</b> {{debt.value}}  {{debt.currency.sign}}</span>
             </div>
-            <div class="ml-auto">
+            <div class="ml-auto" *ngIf="!person.value.connectedUserId">
               <button class="btn btn-secondary btn-sm float-right" (click)="btnEditDebt(debt, person.value);">Edit</button>
             </div>
           </li>
         </ul>
         <div class="d-flex">
           <button class="btn btn-outline-secondary btn-sm" *ngIf="!person.value.connectedUserId" (click)="btnNewConnection(person.value)">Connect</button>
-          <button class="btn btn-primary btn-sm ml-auto" *ngIf="!person.value.connectedUserId"  (click)="btnNewDebt(person.value)">New Debt</button>
+          <button class="btn btn-primary btn-sm ml-auto" *ngIf="!person.value.connectedUserId" (click)="btnNewDebt(person.value)">New Debt</button>
           <button class="btn btn-outline-danger btn-sm" *ngIf="person.value.connectedUserId && !person.value.connectionApproved" (click)="btnDeleteConnection(person.value)" disabled>Cancel</button>
           <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectedUserId && !person.value.connectionApproved" disabled>Connection requested</button>
-          <button class="btn btn-outline-danger btn-sm" *ngIf="person.value.connectionApproved"  (click)="btnDeleteConnection(person.value)" disabled>Disconnect</button>
-          <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectionApproved"  (click)="btnNewDebtRequest(person.value)" disabled>Debt Request</button>
+          <button class="btn btn-outline-danger btn-sm" *ngIf="person.value.connectionApproved" (click)="btnDeleteConnection(person.value)" disabled>Disconnect</button>
+          <button class="btn btn-primary btn-sm ml-auto" *ngIf="person.value.connectionApproved" (click)="btnNewDebtRequest(person.value)" disabled>Debt Request</button>
         </div>
       </div>
     </div>
