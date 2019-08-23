@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CONNECTION_REQUEST, Person, Request, User} from '../_models';
+import {Person, Request, RequestType, User} from '../_models';
 import {AlertService, RequestService, UserService} from '../_services';
 import {HttpErrorResponse} from '@angular/common/http';
 import {RequestAction, RequestEvent} from '../_events';
@@ -34,7 +34,7 @@ export class NewConnectionRequestModalComponent implements OnInit {
     this.userService.getByLogin(this.userLogin).subscribe(
       (users: User[]) => {
         const newConnectionRequest: Request = <Request>{
-          type: CONNECTION_REQUEST,
+          type: RequestType.CONNECTION,
           personId: this.person ? this.person.personId : null,
           user: <User>{
             id: users[0].id

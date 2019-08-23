@@ -30,6 +30,10 @@ export class RequestService {
     return this.pendingRequests;
   }
 
+  getIncomingCount(): number {
+    return this.pendingRequests.filter((request: Request) => request.lastUpdaterId === request.user.id).length;
+  }
+
   create(request: Request): Observable<Request> {
     return this.http.post<Request>('/api/requests', request);
   }

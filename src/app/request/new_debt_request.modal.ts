@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Currency, DEBT_REQUEST, DebtRequestData, Person, Request, User} from '../_models';
+import {Currency, DebtRequestData, Person, Request, RequestType, User} from '../_models';
 import {CurrencyService, RequestService, UserService} from '../_services';
 import {RequestAction, RequestEvent} from '../_events';
 import {NgForm} from '@angular/forms';
@@ -42,7 +42,7 @@ export class NewDebtRequestModalComponent implements OnInit {
 
   public send(): void {
     const newDebtRequest: Request = <Request>{
-      type: DEBT_REQUEST,
+      type: RequestType.DEBT,
       personId: this.person.personId,
       user: <User>{
         id: this.person.connectedUserId

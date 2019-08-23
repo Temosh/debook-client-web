@@ -3,7 +3,7 @@ import {User} from './user';
 
 export class Request {
   readonly id: string;
-  readonly type: string;
+  readonly type: RequestType;
   readonly user: User;
   readonly personId: string = null;
   readonly message: string = null;
@@ -16,5 +16,7 @@ export class Request {
   // TODO Make all fields read only and add methods for accepting/rejecting request, modifying debt data
 }
 
-export const CONNECTION_REQUEST = 'CONNECTION';
-export const DEBT_REQUEST = 'DEBT';
+export enum RequestType {
+  CONNECTION = 'CONNECTION',
+  DEBT = 'DEBT'
+}

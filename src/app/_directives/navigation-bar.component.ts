@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Event, NavigationEnd, Router} from '@angular/router';
+import {RequestService} from '../_services';
 
 declare var $: any;
 
@@ -28,7 +29,10 @@ export class NavigationBarComponent {
 
   readonly tabs = [this.PEOPLE_TAB, this.REQUESTS_TAB, this.PROFILE_TAB];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    public requestService: RequestService
+  ) {
     this.router.events
       .subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {

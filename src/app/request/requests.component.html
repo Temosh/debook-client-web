@@ -1,12 +1,13 @@
 <div class="card mb-2" *ngFor="let request of requestService.getAllPending(); let i = index">
-  <div class="card-header" id="heading_{{i}}">
-    <a class="btn btn-block p-0" role="button" (click)="onRequestClick(request)">
-      <div class="float-left" *ngIf="request.type === CONNECTION_REQUEST">
+  <div class="card-header p-0" id="heading_{{i}}">
+    <a class="btn btn-block p-3 text-left" role="button" (click)="onRequestClick(request)" [ngSwitch]="request.type">
+      <ng-container *ngSwitchCase="requestTypeEnum.CONNECTION">
         <b>Connection</b> {{request.user.name}}
-      </div>
-      <div class="float-left" *ngIf="request.type === DEBT_REQUEST">
+      </ng-container>
+      <ng-container *ngSwitchCase="requestTypeEnum.DEBT">
         <b>Debt</b> {{personService.getPerson(request.personId)?.name}} {{personService.getPerson(request.personId)?.surname}}
-      </div>
+      </ng-container>
+      <span class="badge badge-warning float-right" *ngIf="request.lastUpdaterId === request.user.id">incoming</span>
     </a>
   </div>
   <div class="card-body" *ngIf="request.data.length > 0">

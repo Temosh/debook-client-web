@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CONNECTION_REQUEST, Currency, DEBT_REQUEST, DebtRequestData, Request} from '../_models';
+import {Currency, DebtRequestData, Request, RequestType} from '../_models';
 import {AlertService, PersonService, RequestService, UserService} from '../_services';
 import {RequestAction, RequestEvent} from '../_events';
 
@@ -12,9 +12,10 @@ declare var $: any;
 })
 
 export class EditRequestModalComponent {
+
+  public requestTypeEnum = RequestType;
+
   // TODO Should be enum
-  private readonly CONNECTION_REQUEST: string = CONNECTION_REQUEST;
-  private readonly DEBT_REQUEST: string = DEBT_REQUEST;
   private readonly LOAN_CREDIT_TYPE: string = 'LOAN';
   private readonly DEBT_CREDIT_TYPE: string = 'DEBT';
   // -------------------

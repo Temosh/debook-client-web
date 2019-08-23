@@ -1,11 +1,11 @@
 <div class="modal fade" id="modalEditRequest" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content" *ngIf="request !== undefined">
-      <div class="modal-header">
-        <div *ngIf="request.type === CONNECTION_REQUEST">
+      <div class="modal-header" [ngSwitch]="request.type">
+        <div *ngSwitchCase="requestTypeEnum.CONNECTION">
           <b>Connection</b> {{request.user.name}}
         </div>
-        <div *ngIf="request.type === DEBT_REQUEST">
+        <div *ngSwitchCase="requestTypeEnum.DEBT">
           <b>Debt</b> {{personService.getPerson(request.personId).name}} {{personService.getPerson(request.personId).surname}}
         </div>
         <button type="button" class="close" (click)="close()">&times;</button>
